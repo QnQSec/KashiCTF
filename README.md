@@ -112,5 +112,10 @@ p.interactive()
 
 - easy jail 1
     - `__import__('os').system('cat /flag.txt')`
+
+![easyjail1.png](./images/easyjail1.png)
+
 - `MemorieBringBackYou` and `Corruption`
     - Just grep
+
+![corruption.png](./images/corruption.png)
