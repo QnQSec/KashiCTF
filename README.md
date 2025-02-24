@@ -116,7 +116,7 @@ p.interactive()
 ![easyjail1.png](./images/easyjail1.png)
 
 - `MemorieBringBackYou` and `Corruption`
-    - Just grep
+    - Running strings and grep for format flag KashiCTF{
 
 ![corruption.png](./images/corruption.png)
 
