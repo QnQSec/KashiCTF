@@ -61,7 +61,8 @@ Using this pattern, we attempted to decode the binary sequence into Morse code.
 ### Step 3: Decoding Morse Code
 
 We used [dCode's Morse Code Decoder](https://www.dcode.fr/morse-code) to translate the extracted Morse code into readable text.
-![Pasted image 20250224225632](https://gist.github.com/user-attachments/assets/7724cc35-a1c6-4aa2-a9fd-fbd0f7d6309e)
+
+![Pasted image 20250224225632](./images/7724cc35-a1c6-4aa2-a9fd-fbd0f7d6309e.png)
 
 
 `KashiCTF{OHNOBINARYMORSE}`
@@ -71,7 +72,7 @@ We used [dCode's Morse Code Decoder](https://www.dcode.fr/morse-code) to transla
 
 Running `strings` on the binary immediately revealed the flag:
 
-![Pasted image 20250224230030](https://gist.github.com/user-attachments/assets/bf6e4dc2-4298-42aa-8f30-a6d507b3b09f)
+![Pasted image 20250224230030](./images/bf6e4dc2-4298-42aa-8f30-a6d507b3b09f.png)
 
 `KashiCTF{N07_1N_7H3_G4M3}`
 
@@ -88,7 +89,7 @@ We were given an image that reminded me of the software SilentEye, a tool used f
 Using SilentEye,  I analyzed the image and extracted hidden data. The decoded message revealed the flag:
 
 
-![Pasted image 20250224230554](https://gist.github.com/user-attachments/assets/361d39c5-939f-4d84-b09f-a1e8b59d74a7)
+![Pasted image 20250224230554](./images/361d39c5-939f-4d84-b09f-a1e8b59d74a7.png)
 
 
 `KashiCTF{K33p_1t_re4l}`
