@@ -122,6 +122,47 @@ p.interactive()
 
 ![MemorieBringBackYou](./images/Memory.png)
 
+## Stego Gambit
+
+Step 1: Inspecting the Image File
+The first step was running the `strings` command on `chall.jpg` to look for hidden data. This revealed some interesting text:
+
+```
+4Use the moves as a key to the flag, separated by _
+& 9-''-9B747BOGGOd_d
+& 9-''-9B747BOGGOd_d
+$3br
+%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
+        #3R
+&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
+```
+
+Step 2: Finding the Key Format
+After analyzing the challenge, I initially found a possible move sequence to checkmate. However, I wasn't sure about the correct format for the key. To confirm this, I contacted the challenge author, who gave me two important hints:
+1-Use PGN notation
+2-Use the Lichess format
+
+After receiving this information, I realized that the moves I had initially found were incorrect. I reanalyzed the position, thought through the moves again, and eventually identified the correct move sequence.
+
+Step 3: Testing Key Variations
+
+Even after finding the correct moves, formatting the key correctly for `steghide` was a challenge. I tested over 30 different key variations, but none worked. Eventually, I found the correct format:
+```
+Bh1Kxa2_Qg2#
+```
+
+Step 4: Extracting the Hidden Data
+
+Using `steghide`, I extracted the hidden data from chall.jpg with the correct key:
+
+```sh
+steghide extract -sf chall.jpg -p "Bh1Kxa2_Qg2#"
+```
+
+the flag :- `KashiCTF{573g0_g4m617_4cc3p73d}`
+
+![stego-gambit](./images/stegogambit.png)
+
 # @jibe
 
 ## Misc
