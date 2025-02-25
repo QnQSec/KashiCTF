@@ -138,9 +138,8 @@ $3br
 ```
 
 Step 2: Finding the Key Format
-After analyzing the challenge, I initially found a possible move sequence to checkmate. However, I wasn't sure about the correct format for the key. To confirm this, I contacted the challenge author, who gave me two important hints:
+After analyzing the challenge, I initially found a possible move sequence to checkmate. However, I wasn't sure about the correct format for the key. To confirm this, I contacted the challenge author, who gave me  important hints:
 1-Use PGN notation
-2-Use the Lichess format
 
 After receiving this information, I realized that the moves I had initially found were incorrect. I reanalyzed the position, thought through the moves again, and eventually identified the correct move sequence.
 
@@ -874,4 +873,4 @@ Flag: `KashiCTF{s4m3_old_c0rp0_l1f3_LcUDGCBs}`
 
 # By `__7331__`
 
-https://github.com/avid-developer/CTF-Writeups
+https://github.com/avid-developer/CTF-Writeups.
