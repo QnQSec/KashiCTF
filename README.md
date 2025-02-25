@@ -830,3 +830,7 @@ This returns the list of employees with a denied request:
 ```
 
 Flag: `KashiCTF{s4m3_old_c0rp0_l1f3_LcUDGCBs}`
+
+# By `__7331__`
+
+https://github.com/avid-developer/CTF-Writeups
